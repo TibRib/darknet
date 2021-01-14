@@ -153,7 +153,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, float hier_thresh, int 
     demo_thresh = thresh;
     demo_ext_output = ext_output;
     demo_json_port = json_port;
-    printf("Demo\n");
+    printf("Demo processing...\n");
     net = parse_network_cfg_custom(cfgfile, 1, 1);    // set batch=1
     if(weightfile){
         load_weights(&net, weightfile);
@@ -289,7 +289,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, float hier_thresh, int 
             //printf("\033[2J");
             //printf("\033[1;1H");
             //printf("\nFPS:%.1f\n", fps);
-            printf("Objects:\n\n");
+            //printf("Objects:\n\n");
 
 
             ++frame_id;
@@ -327,7 +327,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, float hier_thresh, int 
                 free_detections(local_dets, local_nboxes);
             }
 
-            printf("\nFPS:%.1f \t AVG_FPS:%.1f\n", fps, avg_fps);
+            //printf("\nFPS:%.1f \t AVG_FPS:%.1f\n", fps, avg_fps);
 
             if(!prefix){
                 if (!dont_show) {
@@ -418,6 +418,8 @@ void demo(char *cfgfile, char *weightfile, float thresh, float hier_thresh, int 
         release_video_writer(&output_video_writer);
         printf("output_video_writer closed. \n");
     }
+
+    printf("\n ENDED. AVG_FPS:%.1f\n", avg_fps);
 
     this_thread_sleep_for(thread_wait_ms);
 
